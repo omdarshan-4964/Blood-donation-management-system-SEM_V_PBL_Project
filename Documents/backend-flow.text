@@ -1,0 +1,24 @@
+my-project/
+├── backend/
+│   ├── config/
+│   │   └── db.js               # Configures the database connection (e.g., MongoDB).
+│   ├── controller/
+│   │   ├── authController.js          # Handles user authentication logic (login, registration).
+│   │   ├── bloodrequestController.js   # Manages blood request functionality.
+│   │   └── notificationController.js   # Manages notifications for blood requests.
+│   ├── middlewares/
+│   │   └── authMiddlewares.js         # Middleware for authentication, e.g., JWT verification.
+│   ├── models/
+│   │   ├── BloodRequest.js            # Defines schema for blood requests.
+│   │   ├── Notification.js            # Defines schema for notifications.
+│   │   └── User.js                    # Defines schema for user details.
+│   ├── routes/
+│   │   ├── authRoutes.js              # Routes for authentication-related actions.
+│   │   ├── bloodRequestRoutes.js      # Routes for blood request operations.
+│   │   └── notificationRoutes.js      # Routes for notification management.
+│   ├── utils/
+│   │   ├── .env                       # Environment variables (e.g., DB connection strings).
+│   │   └── server.js                  # Main entry point, initializes server and routes.
+├── Documents/
+│   └── backend-flow.txt               # Describes backend folder structure and flow.
+└── other project files
