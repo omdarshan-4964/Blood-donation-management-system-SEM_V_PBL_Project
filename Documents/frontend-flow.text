@@ -1,0 +1,21 @@
+src/
+├── api/
+│   └── axiosConfig.js               # Config for axios instance (backend connection)
+│   └── bloodRequestAPI.js            # API functions for blood request actions
+├── components/
+│   └── Navbar.jsx                    # Main navigation bar
+│   └── Footer.jsx                    # Footer component
+│   └── NotificationCard.jsx          # Component for displaying notifications
+│   └── BloodRequestForm.jsx          # Form for creating a blood request
+├── pages/
+│   └── HomePage.jsx                  # Main landing page
+│   └── DonorDashboard.jsx            # Dashboard for donors
+│   └── HospitalDashboard.jsx         # Dashboard for hospitals
+│   └── BloodRequestPage.jsx          # Blood request details and actions
+│   └── NotificationsPage.jsx         # List and actions for notifications
+│   └── LoginPage.jsx                 # Login page
+│   └── SignupPage.jsx                # Signup page for donor/hospital/admin
+├── App.js                            # Main app component and router
+├── main.jsx                          # Entry point for Vite
+└── styles/                           # Folder for custom CSS files
+    └── global.css                    # Global styles for the app
