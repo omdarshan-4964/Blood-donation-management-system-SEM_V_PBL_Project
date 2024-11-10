@@ -30,4 +30,26 @@ const verifyRole = (roles) => (req, res, next) => {
     next();
 };
 
-module.exports = { verifyToken, verifyRole};
+const isAdmin = (req, res, next) => {
+    try {
+    
+        const token = req.header('Authorization')?.split(' ')[1];
+        if (!token) {
+            return res.status(401).json({ message: 'Access denied. No token provided.' });
+        }
+
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (decoded.role === 'Admin') {
+            req.user = decoded; 
+            next(); 
+        } else {
+            res.status(403).json({ message: 'Access denied. Admins only.' });
+        }
+    } catch (error) {
+        res.status(403).json({ message: 'Invalid or expired token.' });
+    }
+};
+
+
+module.exports = { verifyToken, verifyRole, isAdmin};
