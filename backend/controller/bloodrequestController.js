@@ -70,25 +70,4 @@ const acceptBloodRequest = async (req, res) => {
     }
 };
 
-const updateDonationHistory = async (req, res) => {
-    try {
-      
-        const { donorId } = req.params;
-        const { requestId } = req.body;
-
-        const donor = await User.findById(donorId);
-        if (!donor || donor.role !== 'Donor') {
-            return res.status(404).json({ message: 'Donor not found.' });
-        }
-
-        donor.donationHistory.push(requestId);
-        await donor.save();
-
-        res.status(200).json({ message: `Donation history updated for Donor ${donorId} with request ${requestId}` });
-    } catch (error) {
-        console.error('Error updating donation history:', error);
-        res.status(500).json({ message: 'Error updating donation history' });
-    }
-};
-
-module.exports = { sendBloodRequest, acceptBloodRequest, updateDonationHistory};
+module.exports = { sendBloodRequest, acceptBloodRequest};

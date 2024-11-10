@@ -35,9 +35,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    donationHistory: [{ 
-        type: mongoose.Schema.Types.ObjectId, 
-        ref: 'BloodRequest' }]
+    donationHistory: [
+        {
+            bloodRequestId: { type: mongoose.Schema.Types.ObjectId, ref: 'BloodRequest' },
+            hospitalId: { type: mongoose.Schema.Types.ObjectId, ref: 'Hospital' },
+            unitsDonated: { type: Number, required: true },
+            dateOfDonation: { type: Date, required: true }
+        }
+    ]
 });
 
 module.exports = mongoose.model('User', userSchema);
