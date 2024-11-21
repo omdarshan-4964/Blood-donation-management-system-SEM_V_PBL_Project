@@ -1,10 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+
 const cors = require('cors');
 const connectDB = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
-const adminRoutes = require('./routes/adminRoutes');
+const hospitalRoutes = require('./routes/hospitalRoutes');
 const bloodrequestRoutes = require('./routes/bloodRequestRoutes')
 const bodyParser = require('body-parser');
 const notificationRoutes = require('./routes/notificationRoutes')
@@ -19,9 +20,11 @@ app.use(cors());
 app.use(bodyParser.json()); 
 
 app.use('/api/auth', authRoutes);
-app.use('/api', notificationRoutes);
-app.use('/api', bloodrequestRoutes);
-app.use('/api/admin', adminRoutes);
+app.use('/api/v2', notificationRoutes);
+app.use('/api/v1', bloodrequestRoutes);
+app.use('/api/hospital', hospitalRoutes);
+app.use('/notifications', notificationRoutes);
+
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
