@@ -29,7 +29,7 @@ const MyHistoryPage = () => {
         <h1 className="text-xl font-bold">My Donation History</h1>
         <button
           className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-          onClick={() => navigate("/donor-dashboard")}
+          onClick={() => navigate("/donorDashboard")}
         >
           Back to Dashboard
         </button>
@@ -57,3 +57,6 @@ const MyHistoryPage = () => {
 };
 
 export default MyHistoryPage;
+
+
+
