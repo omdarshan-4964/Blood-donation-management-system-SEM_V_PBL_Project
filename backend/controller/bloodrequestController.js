@@ -140,8 +140,8 @@ const getBloodRequestById = async (req, res) => {
     const { id } = req.params;
     try {
         const bloodRequest = await BloodRequest.findById(id)
-        .populate('hospital');
-    
+        // .populate('hospital')
+        
         if (!bloodRequest) {
             return res.status(404).json({ message: 'Blood request not found' });
         }

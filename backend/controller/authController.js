@@ -54,8 +54,9 @@ const loginUser = async (req, res) => {
 
      const role = user.role;
      const id = user._id;
+     const location = user.location;
         res.json({
-            message: 'Login successful', token, role, id
+            message: 'Login successful', token, role, id,location
         });
     } catch (error) {
         res.status(500).json({
