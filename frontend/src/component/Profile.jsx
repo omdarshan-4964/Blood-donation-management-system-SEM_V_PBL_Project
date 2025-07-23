@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from '../api/axios';
 
 const Profile = () => {
   const [profile, setProfile] = useState(null);
@@ -26,7 +26,7 @@ const Profile = () => {
 
       try {
         // Pass the userId as a header for authorization in the request
-        const response = await axios.get("http://localhost:5000/api/auth/user", {
+        const response = await api.get("/api/auth/user", {
           headers: {
             id: userId, // Add userId as a custom header
           },
@@ -70,8 +70,8 @@ const Profile = () => {
 
     try {
       // Send PUT request to update the user profile
-      const response = await axios.put(
-        `http://localhost:5000/api/auth/${userId}`,
+      const response = await api.put(
+        `/api/auth/${userId}`,
         formData
       );
 

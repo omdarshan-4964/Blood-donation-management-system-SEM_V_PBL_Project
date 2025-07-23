@@ -1,44 +1,41 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom"; 
+import api from '../api/axios';
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [roleFilter, setRoleFilter] = useState("All"); // Track the selected filter (Donors, Hospitals, or All)
-  const navigate = useNavigate(); // Initialize useNavigate hook
+  const [roleFilter, setRoleFilter] = useState("All"); 
+  const navigate = useNavigate(); 
 
-  // Fetch all users
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/auth/"); // Replace with your backend endpoint
-        setUsers(response.data); // Set the fetched users
+        const response = await api.get("/api/auth/"); 
+        setUsers(response.data); 
       } catch (error) {
         console.error("Error fetching users:", error.message);
       } finally {
-        setLoading(false); // Stop loading
+        setLoading(false);
       }
     };
 
     fetchUsers();
   }, []);
 
-  // Handle Profile navigation
   const handleProfile = () => {
-    navigate("/profile"); // Navigate to the profile page
+    navigate("/profile"); 
   };
 
-  // Handle Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("role");
-    navigate("/"); // Redirect to Home Page or Login Page
+    navigate("/"); 
   };
 
-  // Filter users by role (Donor, Hospital, or All)
   const filteredUsers = users.filter(user => 
     roleFilter === "All" || user.role === roleFilter
   );
@@ -46,8 +43,8 @@ const AdminDashboard = () => {
   // Handle Delete User
   const handleDelete = async (userId) => {
     try {
-      // Send DELETE request to the backend
-      await axios.delete(`http://localhost:5000/api/auth/${userId}`);
+      
+      await api.delete(`/api/auth/${userId}`);
       // Remove the user from the state after successful deletion
       setUsers(users.filter(user => user._id !== userId));
     } catch (error) {

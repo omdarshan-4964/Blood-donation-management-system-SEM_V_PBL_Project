@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
+import api from '../api/axios';
 
 const DonorDashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -13,7 +14,7 @@ const DonorDashboard = () => {
   useEffect(() => {
     const fetchRequests = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/blood-requests", {
+        const response = await api.get("/api/v1/blood-requests", {
           headers: {
             Authorization: `Bearer ${token}`, // Include token in headers.
           },
@@ -37,8 +38,8 @@ const DonorDashboard = () => {
   // Accept a blood request
   const acceptRequest = async (requestId) => {
     try {
-      const response = await axios.post(
-        `http://localhost:5000/api/v1/blood-requests/${requestId}/accept`,
+      const response = await api.post(
+        `/api/v1/blood-requests/${requestId}/accept`,
         { donorId },
         {
           headers: {

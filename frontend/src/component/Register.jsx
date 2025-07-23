@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import api from '../api/axios';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -32,7 +33,7 @@ const Register = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/register', formData);
+      const response = await api.post('/api/auth/register', formData);
       setSuccess(response.data.message);
 
       setFormData({

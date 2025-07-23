@@ -2,7 +2,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { NavLink } from 'react-router-dom'; // Import NavLink for navigation
+import { NavLink } from 'react-router-dom'; 
+import api from '../api/axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -17,28 +18,23 @@ const Login = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const response = await api.post('/api/auth/login', { email, password });
       setSuccess(response.data.message);
 
-      // Store token in localStorage
       localStorage.setItem('token', response.data.token);
       console.log(response.data.token);
 
       localStorage.setItem("id", response.data.id);
       
-      // Redirect based on role
-      const userRole = response.data.role; // Assuming the response includes the role
-    //  alert(response.data.location );
+      const userRole = response.data.role; 
       if (userRole === 'Donor') {
-      //  navigate('/donorDashboard', { state: {response.data.location} });
+      
         navigate('/donorDashboard', { state: { loc: response.data.location } });
 
       } else if (userRole === 'Hospital') {
-        //navigate('/hospitalDashboard', { state: response.data.location });
-        navigate(`/hospitalDashboard`, { state: { location1: response.data.location } });//+
+        navigate(`/hospitalDashboard`, { state: { location1: response.data.location } });
 
       } else if (userRole === 'Admin') {
-       // navigate('/adminDashboard',  { state: { location: response.data.location } });
         navigate(`/adminDashboard`, { state: { location1: response.data.location } });
 
       }
@@ -88,7 +84,6 @@ const Login = () => {
           </button>
         </form>
 
-        {/* Add a link to the Register page */}
         <div className="mt-4 text-center">
           <p className="text-sm text-gray-600">
             Don&apos;t have an account?{" "}

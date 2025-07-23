@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import api from '../api/axios';
 
 const MyHistoryPage = () => {
   const [donationHistory, setDonationHistory] = useState([]);
@@ -13,7 +14,7 @@ const MyHistoryPage = () => {
   useEffect(() => {
     const fetchDonationHistory = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/hospital/${donorId}/donation-history`);
+        const response = await api.get(`/api/hospital/${donorId}/donation-history`);
         setDonationHistory(response.data.donationHistory);
       } catch (error) {
         console.error("Error fetching donation history:", error);

@@ -11,9 +11,6 @@ import { Routes, Route } from "react-router-dom";
 import AdminDashboard from "./component/adminDashboard";
 import UpdateHistory from "./component/updateHistoryPage";
 
-
-
-
 function App() {
   return (
     <>

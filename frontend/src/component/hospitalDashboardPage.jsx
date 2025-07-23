@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate,useLocation  } from "react-router-dom";
 import axios from "axios";
+import api from '../api/axios';
 
 const HospitalDashboard = () => {
   const [requests, setRequests] = useState([]);
@@ -14,7 +15,7 @@ const HospitalDashboard = () => {
     const fetchRequests = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/blood-requests?status=Accepted"
+          "/api/v1/blood-requests?status=Accepted"
         );
         // alert(location1+""+JSON.stringify(response.data))
         let op=response.data.filter((ele)=>{
